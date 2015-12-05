@@ -5,3 +5,7 @@ authors:
   - Hirofumi Wakasugi <baenej@gmail.com>
 
 license: MIT
+
+development_dependencies:
+  crake:
+    github: MakeNowJust/crake
