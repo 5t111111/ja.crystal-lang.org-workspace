@@ -4,3 +4,7 @@ shards:
     github: MakeNowJust/crake
     version: 1.0.1
 
+  omegatribute:
+    github: 5t111111/omegatribute
+    version: 0.0.1
+

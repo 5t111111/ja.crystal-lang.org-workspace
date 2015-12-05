@@ -6,6 +6,8 @@ authors:
 
 license: MIT
 
-development_dependencies:
+dependencies:
+  omegatribute:
+    github: 5t111111/omegatribute
   crake:
     github: MakeNowJust/crake
