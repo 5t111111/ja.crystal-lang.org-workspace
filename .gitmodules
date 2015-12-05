@@ -4,3 +4,8 @@
 [submodule "ja.crystal-lang.org"]
 	path = ja.crystal-lang.org
 	url = https://github.com/crystal-jp/ja.crystal-lang.org
+	branch = gh-pages
+[submodule "crystal"]
+	path = crystal
+	url = https://github.com/manastech/crystal.git
+	branch = gh-pages
