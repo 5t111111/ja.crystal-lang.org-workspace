@@ -1,3 +1,6 @@
 [submodule "ja.crystal-lang.org-omegat"]
 	path = ja.crystal-lang.org-omegat
 	url = https://github.com/5t111111/ja.crystal-lang.org-omegat.git
+[submodule "ja.crystal-lang.org"]
+	path = ja.crystal-lang.org
+	url = https://github.com/crystal-jp/ja.crystal-lang.org
