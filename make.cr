@@ -1,3 +1,4 @@
+require "colorize"
 require "crake/global"
 require "omegatribute"
 
@@ -17,12 +18,13 @@ end
 
 task "check_update" do
   Dir.cd(File.join(Dir.working_directory, "crystal"))
-  puts Dir.working_directory
   `git remote update`
-  result = `git rev-list master..origin/master`
+  result = `git log --oneline --color --decorate gh-pages..origin/gh-pages`
+  puts "Local HEAD is #{(`git rev-parse HEAD`)[0..7]}"
   if result.chomp.empty?
-    puts "No changes"
+    puts "No changes".colorize(:light_gray)
   else
+    puts "===== New commmits =====".colorize(:green).mode(:bold)
     puts result
   end
 end
