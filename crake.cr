@@ -43,9 +43,10 @@ namespace "update" do
     if config["head"] == new_head_ref
       puts "#{config_file} has not been updated."
     else
-      File.write(config_file, "head: #{new_head_ref}\n")
+      File.write(config_file, "head: #{new_head_ref}\ncopied: false\n")
       puts "#{config_file} has been updated."
       puts "#{config["head"]} => #{new_head_ref}".colorize(:magenta)
+      puts "config[\"copied\"] => false".colorize(:magenta)
     end
   end
 
@@ -60,6 +61,14 @@ namespace "update" do
       "ja.crystal-lang.org-omegat/source/"
     )
     Omegatribute.copy_from_repo_to_omegat_source(upstream_dir, omegat_source_dir)
+    config = YAML.load(File.read(config_file)) as Hash(YAML::Type, YAML::Type)
+    if config["copied"] == "false"
+      File.write(config_file, "head: #{config["head"]}\ncopied: true\n")
+      puts "#{config_file} has been updated."
+      puts "config[\"copied\"] => true".colorize(:magenta)
+    else
+      puts "#{config_file} has not been updated."
+    end
   end
 end
 
