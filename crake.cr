@@ -7,6 +7,12 @@ private def config_file
   "./config.yml"
 end
 
+task "status" do
+  config = YAML.load(File.read(config_file)) as Hash(YAML::Type, YAML::Type)
+  puts "HEAD: #{config["head"]}"
+  puts "Copied?: #{config["copied"]}"
+end
+
 namespace "update" do
   # Check if upstream crystal repository is updated
   task "check" do
