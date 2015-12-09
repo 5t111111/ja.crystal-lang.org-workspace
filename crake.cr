@@ -59,7 +59,7 @@ namespace "update" do
       Dir.working_directory,
       "ja.crystal-lang.org-omegat/source/"
     )
-    Omegatribute.copy_to_omegat_source_directory(upstream_dir, omegat_source_dir)
+    Omegatribute.copy_from_repo_to_omegat_source(upstream_dir, omegat_source_dir)
   end
 end
 
@@ -77,6 +77,6 @@ namespace "release" do
       Dir.working_directory,
       "ja.crystal-lang.org"
     )
-    Omegatribute.copy_back_md_to_repo(omegat_target_dir, repository_dir)
+    Omegatribute.copy_back_from_omegat_target_to_repo(omegat_target_dir, repository_dir)
   end
 end
