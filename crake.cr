@@ -95,7 +95,7 @@ namespace "release" do
     Omegatribute.copy_back_from_omegat_target_to_repo(omegat_target_dir, repository_dir)
   end
 
-  task "status" do
+  task "check" do
     tmp_current_directory = Dir.working_directory
     Dir.cd(File.join(Dir.working_directory, "ja.crystal-lang.org"))
     puts "* Files to be committed ".ljust(80, '*').colorize(:magenta).mode(:bold)
