@@ -27,9 +27,9 @@ namespace "update" do
     else
       puts "* New commmits ".ljust(80, '*').colorize(:magenta).mode(:bold)
       puts result
-      result = `git diff --color origin/gh-pages`
+      result = `git diff --color origin/gh-pages *.md`
       puts "\n"
-      puts "* Diffs ".ljust(80, '*').colorize(:magenta).mode(:bold)
+      puts "* Diffs (Markdown files only) ".ljust(80, '*').colorize(:magenta).mode(:bold)
       puts result
     end
   end
