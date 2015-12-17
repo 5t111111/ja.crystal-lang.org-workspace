@@ -38,8 +38,7 @@ namespace "update" do
   task "pull" do
     tmp_current_directory = Dir.working_directory
     Dir.cd(File.join(Dir.working_directory, "crystal"))
-    # TODO
-    # `git pull origin gh-pages`
+    `git pull origin gh-pages`
     puts "* New Local HEAD ref ".ljust(80, '*').colorize(:magenta).mode(:bold)
     new_head_ref = `git rev-parse HEAD`[0..6]
     puts new_head_ref.colorize(:blue)
