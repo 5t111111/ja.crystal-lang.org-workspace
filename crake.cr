@@ -18,7 +18,7 @@ namespace "update" do
   task "check" do
     Dir.cd(File.join(Dir.working_directory, "crystal"))
     `git remote update`
-    result = `git log --oneline --color --decorate gh-pages..origin/gh-pages`
+    result = `git log --oneline --color --decorate HEAD..origin/gh-pages`
     puts "* Local HEAD ref ".ljust(80, '*').colorize(:magenta).mode(:bold)
     puts `git rev-parse HEAD`[0..6].colorize(:blue)
     puts "\n"
