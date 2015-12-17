@@ -94,4 +94,29 @@ namespace "release" do
     )
     Omegatribute.copy_back_from_omegat_target_to_repo(omegat_target_dir, repository_dir)
   end
+
+  task "status" do
+    tmp_current_directory = Dir.working_directory
+    Dir.cd(File.join(Dir.working_directory, "ja.crystal-lang.org"))
+    puts "* Files to be committed ".ljust(80, '*').colorize(:magenta).mode(:bold)
+    puts `git status -s`
+    Dir.cd(tmp_current_directory)
+  end
+
+  task "commit", deps: %w(status) do
+    config = YAML.load(File.read(config_file)) as Hash(YAML::Type, YAML::Type)
+    Dir.cd(File.join(Dir.working_directory, "ja.crystal-lang.org"))
+    puts "\n* Branch ".ljust(80, '*').colorize(:magenta).mode(:bold)
+    branch = "#{config["head"]}-#{Time.now.to_s("%Y-%m-%d")}"
+    `git checkout -b #{branch}`
+    puts branch.colorize(:yellow)
+    result = `git status -s`
+    files = result.split("\n").map { |line| line.sub(/^\s*(M|A|D|R|C|U)\s+/, "") }
+    commit_message = "Translate #{files.join(", ")} (#{config["head"]})"
+    puts "\n* Commit message ".ljust(80, '*').colorize(:magenta).mode(:bold)
+    puts commit_message
+
+    `git add -A`
+    `git commit -m"#{commit_message}"`
+  end
 end
