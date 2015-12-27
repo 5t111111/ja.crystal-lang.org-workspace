@@ -2,7 +2,7 @@ require "yaml"
 require "./ja.crystal-lang.org-workspace/*"
 
 module JaCrystalLangOrg::Workspace
-  @@workspace_directory = Dir.working_directory
+  @@workspace_directory = Dir.current
   @@config_file = File.join(@@workspace_directory, "config.yml")
   @@config = YAML.load(File.read(@@config_file)) as Hash(YAML::Type, YAML::Type)
 

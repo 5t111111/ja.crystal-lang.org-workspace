@@ -11,7 +11,7 @@ end
 namespace "update" do
   # Check if upstream crystal repository is updated
   task "check" do
-    Dir.cd(File.join(Dir.working_directory, "crystal"))
+    Dir.cd(File.join(Dir.current, "crystal"))
     `git remote update`
     result = `git log --oneline --color --decorate HEAD..origin/gh-pages`
     puts "* Local HEAD ref ".ljust(80, '*').colorize(:magenta).mode(:bold)
@@ -51,11 +51,11 @@ namespace "update" do
   # Copy Markdown files in the original Crystal repository to "ja.crystal-lang.org-omegat/source/"
   task "copy" do
     upstream_dir = File.join(
-      Dir.working_directory,
+      Dir.current,
       "crystal"
     )
     omegat_source_dir = File.join(
-      Dir.working_directory,
+      Dir.current,
       "ja.crystal-lang.org-omegat/source/"
     )
     Omegatribute.copy_from_repo_to_omegat_source(upstream_dir, omegat_source_dir)
@@ -76,11 +76,11 @@ namespace "release" do
   # Copied to the corresponding directory of "ja.crystal-lang.org" repository.
   task "copy" do
     omegat_target_dir = File.join(
-      Dir.working_directory,
+      Dir.current,
       "ja.crystal-lang.org-omegat/target/"
     )
     repository_dir = File.join(
-      Dir.working_directory,
+      Dir.current,
       "ja.crystal-lang.org"
     )
     Omegatribute.copy_back_from_omegat_target_to_repo(omegat_target_dir, repository_dir)
